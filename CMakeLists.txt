@@ -1,23 +1,26 @@
 cmake_minimum_required(VERSION 3.0)
 
-# The plugin name
-set(lib_base_name FileTreePane)
+set(PROJECT_NAME BookFiler-Module-File-Tree-Pane)
+project(${PROJECT_NAME} VERSION 1.0.0 LANGUAGES CXX)
+set(RELEASE_DIR "${CMAKE_BINARY_DIR}/${PROJECT_NAME}/")
+set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${RELEASE_DIR})
 
 # Set up source files
 set(SOURCES
-  Module.cpp
-  UI/MainWidget.cpp
-  UI/WidgetModel.cpp
-  UI/WidgetItemDelegate.cpp
+  src/Module.cpp
+  src/UI/MainWidget.cpp
+  src/UI/WidgetModel.cpp
+  src/UI/WidgetItemDelegate.cpp
 )
 
 set(HEADERS
-  Module.hpp
-  Interface.hpp
-  UI/MainWidget.hpp
-  UI/WidgetModel.hpp
-  UI/WidgetItemDelegate.hpp
-  core/config.hpp
+  src/Module.hpp
+  src/UI/MainWidget.hpp
+  src/UI/WidgetModel.hpp
+  src/UI/WidgetItemDelegate.hpp
+  src/core/config.hpp
+
+  include/BookFiler-Module-File-Tree-Pane/Interface.hpp
 )
 
 set(SHARED_COMPILE_DEFINITIONS
@@ -36,41 +39,10 @@ set(LIBRARIES ${LIBRARIES}
 if(WIN32)
     set(LIBRARIES ${LIBRARIES}
         # Windows Libraries
-        z
-        stdc++
-        gcc
-        uuid
-
-        windowscodecs
-        opengl32
-        gdi32
-        comdlg32
-        oleaut32
-        imm32
-        winmm
-        winspool
-        kernel32
-        user32
-        shell32
-        ole32
-        advapi32
-        ws2_32
-        mingw32
-        rpcrt4
     )
 elseif(UNIX)
     set(LIBRARIES ${LIBRARIES}
         # Unix Libraries
-        z
-        stdc++
-        gcc
-        uuid
-
-        pthread
-        glib-2.0
-        gthread-2.0
-        dl
-        m
     )
 endif()
 
@@ -81,16 +53,16 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Set up library names
 if(BUILD_SHARED_LIBS)
-  set(lib_shared_name ${lib_base_name}LibShared)
+  set(lib_shared_name ${PROJECT_NAME}LibShared)
   set(lib_shared_name_decorated ${lib_shared_name}${JKQtPlotter_LIBNAME_ADDITION})
-  set(${lib_base_name}_SHARED_LIBRARY ${lib_shared_name_decorated}  CACHE STRING "name of static library for ${lib_base_name}" FORCE)
+  set(${PROJECT_NAME}_SHARED_LIBRARY ${lib_shared_name_decorated}  CACHE STRING "name of static library for ${PROJECT_NAME}" FORCE)
   message( STATUS "-- Building ${lib_shared_name}" )
 endif(BUILD_SHARED_LIBS)
 
 if(BUILD_STATIC_LIBS)
-  set(lib_name ${lib_base_name}Lib)
+  set(lib_name ${PROJECT_NAME}Lib)
   set(lib_name_decorated ${lib_name}${JKQtPlotter_LIBNAME_ADDITION})
-  set(${lib_base_name}_STATIC_LIBRARY ${lib_name_decorated}  CACHE STRING "name of static library for ${lib_base_name}" FORCE)
+  set(${PROJECT_NAME}_STATIC_LIBRARY ${lib_name_decorated}  CACHE STRING "name of static library for ${PROJECT_NAME}" FORCE)
   message( STATUS "-- Building ${lib_name}" )
 endif(BUILD_STATIC_LIBS)
 
