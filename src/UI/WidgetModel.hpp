@@ -36,7 +36,7 @@
 #include <QVariant>
 
 // FilesystemDatabase Module
-#include "../../FilesystemDatabase/Interface.hpp"
+#include <BookFiler-Module-Filesystem-Database/Interface.hpp>
 
 // Local Project
 #include "WidgetItemDelegate.hpp"

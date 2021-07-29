@@ -1,4 +1,7 @@
-build
+/build/
+# /lib/
+# /bin/
+# /include/
 CMakeLists.txt.user
 
 # Prerequisites

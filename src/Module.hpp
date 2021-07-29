@@ -44,7 +44,7 @@
 #include <QWidget>
 
 // Local Project
-#include "Interface.hpp"
+#include <BookFiler-Module-File-Tree-Pane/Interface.hpp>
 #include "UI/MainWidget.hpp"
 #include "UI/WidgetItemDelegate.hpp"
 #include "UI/WidgetModel.hpp"

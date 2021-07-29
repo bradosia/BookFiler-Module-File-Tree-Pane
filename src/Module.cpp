@@ -13,7 +13,7 @@
 #include <rapidjson/prettywriter.h>
 
 // FilesystemDatabase Module
-#include "../FilesystemDatabase/Interface.hpp"
+#include <BookFiler-Module-Filesystem-Database/Interface.hpp>
 
 // Local Project
 #include "Module.hpp"
