@@ -124,10 +124,10 @@ endif()
 # THIRD PARTY
 add_subdirectory(third_party)
 if(NOT ModuleManager)
-    add_subdirectory(third_party/Module-Manager)
+    #add_subdirectory(third_party/Module-Manager)
 endif()
 if(NOT SettingsManager)
-    add_subdirectory(third_party/Settings-Manager)
+    #add_subdirectory(third_party/Settings-Manager)
 endif()
 
 # MODULES
