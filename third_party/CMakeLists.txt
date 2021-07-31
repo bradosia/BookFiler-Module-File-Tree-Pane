@@ -1,5 +1,6 @@
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.14)
 # The FetchModule is only available since CMake 3.11.
+# FetchContent_MakeAvailable since CMake 3.14.
 
 include(FetchContent)
 
@@ -10,7 +11,7 @@ FetchContent_Declare(
     GIT_REPOSITORY "https://github.com/bradosia/Module-Manager.git"
     SOURCE_DIR "${PROJECT_SOURCE_DIR}/third_party/Module-Manager"
 )
-FetchContent_Populate(ModuleManagerFetch)
+FetchContent_MakeAvailable(ModuleManagerFetch)
 endif()
 
 find_library(LIBRARY_EXISTS ModuleManager)
@@ -25,7 +26,7 @@ FetchContent_Declare(
     GIT_REPOSITORY "https://github.com/bradosia/Settings-Manager.git"
     SOURCE_DIR "${PROJECT_SOURCE_DIR}/third_party/Settings-Manager"
 )
-FetchContent_Populate(SettingsManagerFetch)
+FetchContent_MakeAvailable(SettingsManagerFetch)
 endif()
 
 find_library(LIBRARY_EXISTS SettingsManager)
