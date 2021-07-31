@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.4)
 
-set(PROJECT_NAME BookFiler-Module-File-Tree-Pane)
+set(PROJECT_NAME BookFilerModuleFileTreePane)
 project(${PROJECT_NAME} VERSION 1.0.0 LANGUAGES CXX)
 set(RELEASE_DIR "${CMAKE_BINARY_DIR}/${PROJECT_NAME}/")
 set(INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}/")
@@ -123,12 +123,6 @@ endif()
 
 # THIRD PARTY
 add_subdirectory(third_party)
-if(NOT ${ModuleManager})
-    add_subdirectory(third_party/Module-Manager)
-endif()
-if(NOT ${SettingsManager})
-    add_subdirectory(third_party/Settings-Manager)
-endif()
 
 # MODULES
 #add_subdirectory(modules/)
