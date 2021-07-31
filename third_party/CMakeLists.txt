@@ -26,6 +26,7 @@ FetchContent_Declare(
     SOURCE_DIR "${PROJECT_SOURCE_DIR}/third_party/Settings-Manager"
 )
 FetchContent_Populate(Settings-Manager)
+endif()
 
 find_library(LIBRARY_EXISTS SettingsManager)
 if(NOT LIBRARY_EXISTS)
