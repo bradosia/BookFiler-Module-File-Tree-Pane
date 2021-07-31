@@ -2,8 +2,12 @@ cmake_minimum_required(VERSION 3.4)
 
 set(PROJECT_NAME BookFilerModuleFileTreePane)
 project(${PROJECT_NAME} VERSION 1.0.0 LANGUAGES CXX)
+if(NOT DEFINED RELEASE_DIR)
 set(RELEASE_DIR "${CMAKE_BINARY_DIR}/${PROJECT_NAME}/")
+endif()
+if(NOT DEFINED INSTALL_DIR)
 set(INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}/")
+endif()
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${RELEASE_DIR})
 
@@ -140,7 +144,7 @@ if(BUILD_SHARED_LIBS)
     COMMAND ${CMAKE_COMMAND} -E make_directory "${RELEASE_DIR}modules/"
     COMMAND ${CMAKE_COMMAND} -E make_directory "${RELEASE_DIR}resources/"
     COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${lib_shared_name}> "${RELEASE_DIR}modules/"
-    #COMMAND ${CMAKE_COMMAND} -E remove $<TARGET_FILE:${lib_shared_name}>
+    COMMAND ${CMAKE_COMMAND} -E remove $<TARGET_FILE:${lib_shared_name}>
     COMMAND ${CMAKE_COMMAND} -E copy_directory "${PROJECT_SOURCE_DIR}/resources/" "${RELEASE_DIR}resources"
     COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/settings/settings.json" "${RELEASE_DIR}settings.json"
   )
