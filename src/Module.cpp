@@ -13,7 +13,7 @@
 #include <rapidjson/prettywriter.h>
 
 // FilesystemDatabase Module
-#include <BookFiler-Module-Filesystem-Database/Interface.hpp>
+//#include <BookFiler-Module-Filesystem-Database/Interface.hpp>
 
 // Local Project
 #include "Module.hpp"
@@ -25,13 +25,14 @@
 namespace FileTreePane {
 
 ModuleExport::ModuleExport() {
-  getDirectorySignal = std::make_shared<boost::signals2::signal<void(
-      std::string, std::function<void(std::shared_ptr<FSDB::filesystem::FileTableData>)>)>>();
+  /*getDirectorySignal = std::make_shared<boost::signals2::signal<void(
+      std::string,
+     std::function<void(std::shared_ptr<FSDB::filesystem::FileTableData>)>)>>();*/
 }
 
 std::shared_ptr<QWidget> ModuleExport::getWidget() {
   treeModel = std::make_shared<WidgetModel>();
-  treeModel->getDirectorySignal = getDirectorySignal;
+  // treeModel->getDirectorySignal = getDirectorySignal;
   filesystemItemDelegate = std::make_shared<WidgetItemDelegate>();
   treeView = std::make_shared<MainWidget>();
   treeView->setModel(treeModel.get());

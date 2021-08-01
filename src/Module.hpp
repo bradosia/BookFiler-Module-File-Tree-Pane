@@ -44,22 +44,30 @@
 #include <QWidget>
 
 // Local Project
-#include <BookFiler-Module-File-Tree-Pane/Interface.hpp>
 #include "UI/MainWidget.hpp"
 #include "UI/WidgetItemDelegate.hpp"
 #include "UI/WidgetModel.hpp"
+#include <BookFiler-Module-File-Tree-Pane/Interface.hpp>
 
 /*
  * FileTreePane
  */
 namespace FileTreePane {
 
+class FileTreePaneWidgetInternal : public bookfiler::FileTreePaneWidget {
+public:
+  FileTreePaneWidgetInternal(){};
+  ~FileTreePaneWidgetInternal(){};
+  bool initGraphics(std::shared_ptr<bookfiler::WidgetData>) { return true; }
+  bool render(std::shared_ptr<bookfiler::WidgetData>) { return true; }
+};
+
 /*
  * Plugin uses the MVC design pattern.
  * This is the controller, the view is a QT widget, and the model is the API
  * storage
  */
-class ModuleExport : public ModuleInterface {
+class ModuleExport : public bookfiler::FileTreePaneInterface {
 private:
   std::shared_ptr<WidgetModel> treeModel;
   std::shared_ptr<WidgetItemDelegate> filesystemItemDelegate;
@@ -71,15 +79,24 @@ public:
 
   void init() { printf("File Tree Pane Module: init()\n"); }
   std::shared_ptr<QWidget> getWidget();
+  std::shared_ptr<bookfiler::FileTreePaneWidget> newWidget() {
+    auto widgetPtr = std::make_shared<FileTreePaneWidgetInternal>();
+    return widgetPtr;
+  }
+  std::shared_ptr<bookfiler::FileTreePaneWidget>
+  getWidget(unsigned int widgetId) {
+    auto widgetPtr = std::make_shared<FileTreePaneWidgetInternal>();
+    return widgetPtr;
+  }
+  bool deleteWidget(unsigned int widgetId) { return true; }
   void treeSetJSON(std::shared_ptr<rapidjson::Document> data);
-  void
-  registerSettings(std::shared_ptr<rapidjson::Document> moduleRequest,
-                   std::shared_ptr<std::unordered_map<
-                       std::string, std::function<void(std::shared_ptr<rapidjson::Document>)>>>
-                       moduleCallbackMap);
+  void registerSettings(
+      std::shared_ptr<rapidjson::Document> moduleRequest,
+      std::shared_ptr<std::unordered_map<
+          std::string,
+          std::function<void(std::shared_ptr<rapidjson::Document>)>>>
+          moduleCallbackMap);
   void pathSetByJSON(std::shared_ptr<rapidjson::Document> data);
-
-
 };
 
 // Exporting `my_namespace::module` variable with alias name `module`
